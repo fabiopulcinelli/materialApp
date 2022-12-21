@@ -1,0 +1,25 @@
+<mat-toolbar color="primary">
+      <button mat-icon-button (click)="sidenavClick()">
+        <mat-icon class="ham-icon" *ngIf="!sidenavOpened">
+            menu
+        </mat-icon>
+        <mat-icon class="ham-icon" *ngIf="sidenavOpened">
+            close
+        </mat-icon>
+      </button>
+      <div>
+          <h2>MyApp</h2>
+      </div>
+
+      <div class="col-md-3 text-end" *ngIf="authService.isLoggedIn() === false">
+        <p class="navbar-text">
+            <a class="btn btn-primary " routerLink="/login">Login</a>
+        </p>
+    </div>
+
+    <div class="col-md-3 text-end" *ngIf="(authService.getUserLogged() | async)?.username">
+        <p class="navbar-text">Utente: {{(authService.getUserLogged() | async)?.username}}
+            <a href="" (click)="logout()">Logout</a>
+        </p>
+    </div>
+  </mat-toolbar>

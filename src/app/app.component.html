@@ -1,0 +1,12 @@
+<app-toolbar [sidenavOpened]="sidenav.opened" (sidenavToggle)="sidenav.toggle()"></app-toolbar>
+<mat-sidenav-container>
+    <mat-sidenav class="mat-elevation-z8 sidenav" #sidenav="matSidenav">
+      <app-sidenav [sidenavOpened]="sidenav.opened" (sidenavToggle)="sidenav.toggle()"></app-sidenav>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <div class="content">
+            <router-outlet></router-outlet>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>

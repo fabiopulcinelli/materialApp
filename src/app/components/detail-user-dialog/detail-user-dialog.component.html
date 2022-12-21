@@ -1,0 +1,67 @@
+<div class="main-container">
+
+    <form class="form-container" (ngSubmit)="save()" #f="ngForm">
+
+        <h2>Inserisci nuovo elemento</h2>
+
+        <div class="row-form-container">
+            <mat-form-field appearance="fill" class="input-form">
+                <mat-label>Nome</mat-label>
+                <input 
+                    matInput 
+                    required
+                    [readonly]="operazione === 'view'"
+                    minlength="4"
+                    name="nome"
+                    type="text" 
+                    #nomeRef="ngModel"
+                    [(ngModel)]="userForm.nome"
+                    placeholder="Inserire il nome">
+                    <mat-error *ngIf="nomeRef.errors?.['required']">Nome obbligatorio</mat-error>
+                    <mat-error *ngIf="nomeRef.errors?.['minlength']">Il nome deve avere almeno 4 caratteri</mat-error>
+              </mat-form-field>
+        
+              <mat-form-field appearance="fill" class="input-form">
+                <mat-label>Cognome</mat-label>
+                <input 
+                    matInput 
+                    required
+                    [readonly]="operazione === 'view'"
+                    minlength="4"
+                    name="cognome"
+                    type="text" 
+                    #cognomeRef="ngModel"
+                    [(ngModel)]="userForm.cognome"
+                    placeholder="Inserire il cognome">
+                    <mat-error *ngIf="cognomeRef.errors?.['required']">Cognome obbligatorio</mat-error>
+                    <mat-error *ngIf="cognomeRef.errors?.['minlength']">Il cognome deve avere almeno 4 caratteri</mat-error>
+              </mat-form-field>
+        </div>
+        
+        <div class="row-form-container">
+            <mat-form-field appearance="fill" class="input-form">
+                <mat-label>Data di Nascita</mat-label>
+                <input 
+                    matInput 
+                    required
+                    type="text" 
+                    [readonly]="operazione === 'view'"
+                    name="dataDiNascita"
+                    #dataDiNascitaRef="ngModel"
+                    [(ngModel)]="userForm.dataDiNascita"
+                    placeholder="Inserire il nickname">
+                    <mat-error *ngIf="dataDiNascitaRef.errors?.['required']">Data di Nascita obbligatoria</mat-error>
+              </mat-form-field>
+        
+              
+        </div>
+
+            
+        <div style="display:flex; justify-content:space-between">
+            <button (click)="closeDialog()" mat-raised-button color="primary">Chiudi</button>
+            <button *ngIf="operazione !== 'view'" type="submit" mat-raised-button color="primary">Salva</button>
+        </div>
+
+    </form>
+
+</div>

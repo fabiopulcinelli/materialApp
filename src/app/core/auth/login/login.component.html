@@ -1,0 +1,60 @@
+<!-- Begin page content -->
+<main class="flex-shrink-0">
+    <div class="container mb-5" style="width: 35%;">
+
+        <div class='card'>
+            <div class='card-header'>
+                <h5>Login</h5>
+            </div>
+            <div class='card-body mt-3'>
+
+                <form (ngSubmit)="login(utenteForm)" #utenteForm="ngForm" class="row g-3">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label>Username<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" placeholder="Inserire Username" required minlength="4"
+                                id="username" name="username" [(ngModel)]="utente.username" #usernameVar="ngModel"
+                                [ngClass]="{'is-invalid': (usernameVar.touched || usernameVar.dirty) && !usernameVar.valid }">
+                            <span class="invalid-feedback">
+                                <span *ngIf="usernameVar.errors?.['required']">
+                                    Prego inserire un valore
+                                </span>
+                                <span *ngIf="usernameVar.errors?.['minlength']">
+                                    Il campo deve avere almeno quattro caratteri.
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="row mt-2">
+                        <div class="col-md-12">
+                            <label>Password<span class="text-danger">*</span></label>
+                            <input type="password" class="form-control" placeholder="Inserire la password" required minlength="4"
+                                id="password" name="password" [(ngModel)]="utente.password" #passwordVar="ngModel"
+                                [ngClass]="{'is-invalid': (passwordVar.touched || passwordVar.dirty) && !passwordVar.valid }">
+                            <span class="invalid-feedback">
+                                <span *ngIf="passwordVar.errors?.['required']">
+                                    Prego inserire un valore
+                                </span>
+                                <span *ngIf="passwordVar.errors?.['minlength']">
+                                    Il campo deve avere almeno quattro caratteri.
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="col-12 mb-3 mt-5">
+                        <button type="submit" name="submit" value="submit" id="submit" 
+                            class="btn btn-primary" [disabled]="utenteForm.invalid">Conferma</button>
+                    </div>
+
+                </form>
+                <!-- end card-body -->
+            </div>
+            <!-- end card -->
+        </div>
+        <!-- end container -->
+    </div>
+
+    <!-- end main -->
+</main>

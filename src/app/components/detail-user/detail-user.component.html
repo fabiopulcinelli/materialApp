@@ -1,0 +1,68 @@
+<div class="main-container">
+
+    <form class="mat-elevation-z8 form-container" (ngSubmit)="save()" [formGroup]="userReactive">
+
+        <h2>Inserisci nuovo elemento</h2>
+
+        <div class="row-form-container">
+            <mat-form-field appearance="fill" class="input-form">
+                <mat-label>Nome</mat-label>
+                <input 
+                    matInput 
+                    name="nome"
+                    type="text" 
+                    formControlName="nome"
+                    placeholder="Inserire il nome">
+                    <mat-error *ngIf="userReactive.get('nome')?.hasError('required')">Nome obbligatorio</mat-error>
+                    <mat-error *ngIf="userReactive.get('nome')?.hasError('minlength')">Il nome deve avere almeno 4 caratteri</mat-error>
+              </mat-form-field>
+        
+              <mat-form-field appearance="fill" class="input-form">
+                <mat-label>Cognome</mat-label>
+                <input 
+                    matInput 
+                    name="cognome"
+                   
+                    type="text" 
+                    formControlName="cognome"
+                    placeholder="Inserire il cognome">
+                    <mat-error *ngIf="userReactive.get('cognome')?.hasError('required')">Cognome obbligatorio</mat-error>
+                    <mat-error *ngIf="userReactive.get('cognome')?.hasError('minlength')">Il cognome deve avere almeno 4 caratteri</mat-error>
+              </mat-form-field>
+        </div>
+        
+        <div class="row-form-container">
+            <mat-form-field appearance="fill" class="input-form">
+                <mat-label>Data di Nascita</mat-label>
+                <input 
+                    matInput 
+                    type="text" 
+                    name="dataDiNascita"
+                    formControlName="dataDiNascita"
+                    placeholder="Inserire la data di nascita">
+                    <mat-error>Data di Nascita obbligatoria</mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance="fill" class="input-form">
+                <mat-label>Sesso</mat-label>
+                <mat-select formControlName="sesso">
+                    <mat-option value="">Seleziona</mat-option>
+                    <mat-option *ngFor="let sesso of sessi" [value]="sesso">
+                        {{sesso}}
+                    </mat-option>
+                </mat-select>
+                <mat-error>Data di Nascita obbligatoria</mat-error>
+              </mat-form-field>
+        
+              
+        </div>
+
+            
+        <div style="display:flex; justify-content:space-between">
+            <button routerLink="/list" mat-raised-button color="primary">Indietro</button>
+            <button *ngIf="operazione !== 'view'" type="submit" [disabled]="userReactive.invalid" mat-raised-button color="primary">Salva</button>
+        </div>
+
+    </form>
+
+</div>
