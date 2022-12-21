@@ -2,7 +2,7 @@ export interface User {
     id?: number;
     nome?: string;
     cognome?: string;
-    dataDiNascita?: string;
+    dataNascita?: Date;
     token?: string;
     username?: string;
     password?: string;

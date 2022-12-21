@@ -17,7 +17,7 @@ import { DetailUserComponent } from '../detail-user/detail-user.component';
 export class ListUserComponent implements OnInit {
 
   displayedColumns: string[] = ['id', 'nome', 'cognome', 'dataDiNascita', 'azioni'];
-  dataSource!: MatTableDataSource<User>;
+  dataSource: MatTableDataSource<User> = new MatTableDataSource<User>();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -71,6 +71,7 @@ export class ListUserComponent implements OnInit {
     this.userService.deleteUser(idUser);
     this.snackbarService.openSnackbar("ciao", "custom-style");
     this.userService.getUserList().subscribe(res => this.dataSource.data = res);
+    this.router.navigate([""])
   }
   
   getData(){

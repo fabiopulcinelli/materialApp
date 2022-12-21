@@ -9,7 +9,7 @@ export interface UserForm extends FormGroup<{
   nome: FormControl<string>;
   cognome: FormControl<string>;
   id: FormControl<number>;
-  dataDiNascita: FormControl<string>;
+  dataDiNascita: FormControl<Date>;
   sesso: FormControl<string>;
 }>{}
 
@@ -25,7 +25,7 @@ export class DetailUserComponent {
     id: this.fb.nonNullable.control(0),
     nome: this.fb.nonNullable.control('', [Validators.required, Validators.minLength(4)]),
     cognome: this.fb.nonNullable.control('', [Validators.required, Validators.minLength(4)]),
-    dataDiNascita: this.fb.nonNullable.control('', [Validators.required]),
+    dataDiNascita: this.fb.nonNullable.control(new Date(), [Validators.required]),
     sesso: this.fb.nonNullable.control('', [Validators.required])
   });
 
@@ -38,7 +38,7 @@ export class DetailUserComponent {
     id: 0,
     nome: '',
     cognome: '',
-    dataDiNascita: ''
+    dataNascita: new Date()
   };
   operazione!: 'edit' | 'view' | 'create';
   isDialog = false;

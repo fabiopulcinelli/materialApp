@@ -44,11 +44,11 @@
                 <input 
                     matInput 
                     required
-                    type="text" 
+                    type="date" 
                     [readonly]="operazione === 'view'"
                     name="dataDiNascita"
                     #dataDiNascitaRef="ngModel"
-                    [(ngModel)]="userForm.dataDiNascita"
+                    [(ngModel)]="userForm.dataNascita"
                     placeholder="Inserire il nickname">
                     <mat-error *ngIf="dataDiNascitaRef.errors?.['required']">Data di Nascita obbligatoria</mat-error>
               </mat-form-field>

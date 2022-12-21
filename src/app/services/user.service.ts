@@ -3,6 +3,18 @@ import { Injectable } from '@angular/core';
 import { catchError, Observable, of, tap } from 'rxjs';
 import { User } from '../models/user';
 
+export interface UserInsert {
+  nome?: string;
+  cognome?: string;
+  username?: string;
+  password?: string;
+  dataNascita?: Date;
+  ruolo?: {
+    id: number,
+    codice?: string
+  }
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -16,8 +28,8 @@ export class UserService {
   }
 
   listaUser: User[] = [
-    { id: 1, nome: 'Alessio', cognome: 'Rossi', dataDiNascita: '10/06/1987' },
-    { id: 2, nome: 'Mario', cognome: 'Gialli', dataDiNascita: '11/07/1990' }
+    { id: 1, nome: 'Alessio', cognome: 'Rossi', dataNascita: new Date() },
+    { id: 2, nome: 'Mario', cognome: 'Gialli', dataNascita: new Date() }
   ];
 
   constructor(private http: HttpClient) { }
@@ -28,25 +40,39 @@ export class UserService {
 
 
   updateUser(user: User){
-    return this.http.put<User>(this.apiServer, user, this.httpOptions).pipe(
-      tap((upUser: User) => console.log(`updated User w/ id=${upUser.id}`)),
-      catchError(this.handleError<User>('user'))
-    );
+    const url = `${this.apiServer}/${user.id}`;
+
+    let invia: UserInsert = user;
+    invia.ruolo = {id:2 , codice: user.role};
+
+    return this.http.put<User>(url, user, this.httpOptions).subscribe(data => {
+      console.log(data);
+    });
   }
 
   deleteUser(idUser: number){
     const url = `${this.apiServer}/${idUser}`;
-    return this.http.delete<User>(url).pipe(
-      tap(_ => console.log(`fetched User id=${idUser}`)),
-      catchError(this.handleError<User>(`user id=${idUser}`))
-    );
+    return this.http.delete<User>(url).subscribe(data => {
+      console.log(data);
+    });
   }
 
   aggiungiUser(user: User){
-    return this.http.post<User>(this.apiServer, user, this.httpOptions).pipe(
-      tap((newUser: User) => console.log(`added User w/ id=${newUser.id}`)),
-      catchError(this.handleError<User>('addUser'))
-    );
+    user.id = undefined;
+    
+    //per default nome e' come username e cognome come password
+    user.username = user.nome;
+    user.password = user.cognome;
+
+    //di default ruolo user
+    user.role = "ROLE_CLASSIC_USER";
+
+    let invia: UserInsert = user;
+    invia.ruolo = {id:2 , codice: "ROLE_CLASSIC_USER"};
+
+    return this.http.post<User>(this.apiServer, user, this.httpOptions).subscribe(data => {
+      console.log(data);
+    });
   }
 
 

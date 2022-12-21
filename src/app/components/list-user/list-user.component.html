@@ -26,7 +26,7 @@
         <!-- Symbol Column -->
         <ng-container matColumnDef="dataDiNascita">
           <th mat-header-cell *matHeaderCellDef> Data di Nascita </th>
-          <td mat-cell *matCellDef="let element"> {{element.dataDiNascita}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.dataNascita | date: 'dd/MM/yyyy'}} </td>
         </ng-container>
 
         <ng-container matColumnDef="azioni">

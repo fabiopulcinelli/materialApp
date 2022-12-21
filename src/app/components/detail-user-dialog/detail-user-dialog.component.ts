@@ -17,7 +17,7 @@ export class DetailUserDialogComponent {
     id: 0,
     nome: '',
     cognome: '',
-    dataDiNascita: ''
+    dataNascita: new Date()
   };
   operazione!: 'edit' | 'view' | 'create';
 
