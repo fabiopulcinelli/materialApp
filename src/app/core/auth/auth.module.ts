@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login/login.component';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-
+import { MaterialModule } from 'src/app/shared/material/material.module';
 
 const routes: Routes = [
   {
@@ -20,7 +20,8 @@ const routes: Routes = [
     CommonModule,
     RouterModule,
     RouterModule.forChild(routes),
-    FormsModule
+    FormsModule,
+    MaterialModule
   ]
 })
 export class AuthModule { }

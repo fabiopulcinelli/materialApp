@@ -71,7 +71,8 @@ export class ListUserComponent implements OnInit {
     this.userService.deleteUser(idUser);
     this.snackbarService.openSnackbar("ciao", "custom-style");
     this.userService.getUserList().subscribe(res => this.dataSource.data = res);
-    this.router.navigate([""])
+    this.getData();
+    this.router.navigate([""]);
   }
   
   getData(){
